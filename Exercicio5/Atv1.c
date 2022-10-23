@@ -21,7 +21,7 @@ int main()
         printf("\nDigite a nota n %d de lab.pc1 e pc1: ", i+1);
         scanf("%d %d", &nota1[i], &nota2[i]);
 
-        while (nota1[i] <= 0 || nota1[i] >=100 || nota2[i] <=0 || nota2[i] >=100)
+        while (nota1[i] < 0 || nota1[i] >100 || nota2[i] <0 || nota2[i] >100)
         {
             printf("\nDigite novamente o valor das notas: ");
             scanf("%d %d", &nota1[i], &nota2[i]);

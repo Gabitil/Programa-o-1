@@ -12,11 +12,11 @@ int media(int a)
 {
    
 
-    if (a > M)
+    if (a > 60)
     {
         printf("acima da media");
     }
-    else if (a == M)
+    else if (a == 60)
     {
        printf("na media");
     }
@@ -27,15 +27,15 @@ int media(int a)
 
 int main()
 {
-    int num; 
+    int qn; 
     printf("programa para ler n notas de 2 materias:\n");
 
     printf("Digite a quantidade de notas a ser recebido: ");
-    scanf("%d", &num);
+    scanf("%d", &qn);
 
-    int nota1[num], nota2[num];
+    int nota1[M], nota2[M];
 
-    for (int i = 0; i < num; i++)
+    for (int i = 0; i < qn; i++)
     {
         printf("\nDigite a nota do aluno %d de lab.pc1 e pc1: ", i+1);
         scanf("%d %d", &nota1[i], &nota2[i]);

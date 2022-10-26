@@ -6,11 +6,13 @@ M como constante, a qual deve ser declarada com a diretiva de compilação #defi
 da main. Gere o programa exer5_prog2.c.*/
 
 #include <stdio.h>
-#define M 60
+#define M 3
+#define N 2
 
-int media(int a)
+int media(int a,)
 {
-   
+    media
+
 
     if (a > 60)
     {
@@ -21,7 +23,6 @@ int media(int a)
        printf("na media");
     }
     else printf("abaixo da media"); 
-    
 }
 
 
@@ -30,12 +31,10 @@ int main()
     int qn; 
     printf("programa para ler n notas de 2 materias:\n");
 
-    printf("Digite a quantidade de notas a ser recebido: ");
-    scanf("%d", &qn);
 
     int nota1[M], nota2[M];
 
-    for (int i = 0; i < qn; i++)
+    for (int i = 0; i < N; i++)
     {
         printf("\nDigite a nota do aluno %d de lab.pc1 e pc1: ", i+1);
         scanf("%d %d", &nota1[i], &nota2[i]);

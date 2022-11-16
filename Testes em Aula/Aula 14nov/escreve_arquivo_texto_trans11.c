@@ -15,8 +15,8 @@ int main (){
     char ch;
     FILE *arq1; //origem ou fonte 
     FILE *arq2; //destino ou copia 
-    char *fonte="arq1.txt";  //input
-    char *destino= "arq1_copia.txt";  //output
+    char *fonte="teste.c";  //input
+    char *destino= "copia.c";  //output
     arq1 = fopen (fonte, "r" );
     if ( arq1 == NULL )
         printf ("O arquivo %s nao pode ser aberto\n", fonte);

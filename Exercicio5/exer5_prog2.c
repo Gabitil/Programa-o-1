@@ -3,15 +3,15 @@ notas pelo teclado. Use uma repetição para garantir que as notas são de 0 a 1
 a média de cada disciplina. Gere o programa exer5_prog1.c.*/
 
 #include <stdio.h>
-#define n 2
-
+#define n 5 
 
 int main()
 {
-    int n; 
+ 
     printf("programa para ler n notas de de Lab. PC I e PC I:\n");
 
     int nota1[n], nota2[n];
+    int media1=0, media2=0;
 
     for (int i = 0; i < n; i++)
     {
@@ -24,8 +24,14 @@ int main()
             scanf("%d %d", &nota1[i], &nota2[i]);
         }
         
+        media1 += nota1[i];
+        media2 += nota2[i];
         
     }
     
+    media1 = media1/n;
+    media2 = media2/n;
+
+    printf("\nA media da de lab.pc1 e: %d e a media de pc1 e: %d", media1, media2);
 
 }

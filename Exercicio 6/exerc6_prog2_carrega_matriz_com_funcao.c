@@ -11,19 +11,18 @@ com exerc6_prog2_carrega_matriz_com_funcao.c*/
 #define M 3
 #define N 5
 
-int preeche_matriz(int mat[M][N], int M, int N);
+void preeche_matriz(int mat[][N]);
 
 int main()
 {
     int num[M][N];
-    srand( time(NULL));
 
-    for (int i = 0; i < M; i++)
+    preeche_matriz(num); 
+
+  for (int i = 0; i < M; i++)
     {
         for (int j = 0; j < N; j++)
         {
-            num[i][j]=rand()%100;
-
             printf("%d ", num[i][j]);
         }
 
@@ -33,7 +32,16 @@ int main()
     
 }
 
-int preeche_matriz(int mat[M][N], int M, int N)
+void preeche_matriz(int mat[][N])
 {
-    
+    srand(time(NULL));
+
+    for (int i = 0; i < M; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            mat[i][j]=rand()%100;
+        }       
+    }
+
 }

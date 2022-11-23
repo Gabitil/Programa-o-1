@@ -17,13 +17,31 @@ int main()
 {
     char nomes[M][N];
     int tam[M];
+    int pos;
+    char ultimo[N];
     
     for (int i = 0; i < M; i++)
     {
         printf("Digite um nome: ");
         gets(nomes[i]);
 
-        tam[i]== strlen (nomes[i]);
+        tam[i]= strlen (nomes[i]);
+
+        if (i>0)
+        {
+            if (strcmp(nomes[i],nomes[i-1])>0)
+                strcpy(ultimo,nomes[i]);
+            else
+                strcpy(ultimo,nomes[i-1]);
+            
+        }
+
+
+        printf("O nome digitado foi %s e a quantidade de caracteres do nome e: %d\n", nomes[i], tam[i]);    
     }
-    
+        
+
+    printf("O ultimo nome em ordem alfabetica e: ");
+    puts(ultimo);
+    printf("O nome maior é %s", nomes[pos]);
 }

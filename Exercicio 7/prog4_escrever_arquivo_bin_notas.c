@@ -2,18 +2,19 @@
 usados arquivos binários. Os programas devem ter os seguintes respectivos nomes:
 prog4_escrever_arquivo_bin_notas.c e prog5_ler_arquivo_bin_notas.c. O arquivo em binário deve
 ser chamar notas.bin.*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 20
+#define N 10
 
 FILE *arq;
 
 int main(int argc, char const *argv[])
 {
-    const void *notas[N];
-    int result;
+
+    char *nome[N];
+    int notas[N];
+    int j=0,k=0, mn=1;
 
     char url[]="notas.bin";
     arq = fopen(url,"wb");
@@ -24,14 +25,29 @@ int main(int argc, char const *argv[])
     }
 
 
-    for (int i = 1; i<argc; i++ )
-            notas[i-1]=argv[i];  
+    for (int i = 1; i< argc; i++ )
+    {
 
-    result = fwrite(&notas, sizeof(char), N , arq);
+        if (i%2!=0)
+        {          
+            nome[j]=argv[i];
+            j++;
+            
+        }
+        else
+        {
+            notas[k]=atoi(argv[i]);
+            k++;
+        }
+  
+    }
+
+    for (int i = 0; i < j ; i++)
+    {
+
+        fprintf(arq, "%s\n", nome[i]);
+        fprintf(arq,"%d\n", notas[i]);
+    }
     
-    if (result!= N)
-        printf("Erro: foram escritos %d elementos\n", result);
-    else 
-        printf("Dados escritos com sucesso!\n");
     fclose(arq);
 }

@@ -1,0 +1,6 @@
+lucas
+20
+pedro
+40
+felipe
+50

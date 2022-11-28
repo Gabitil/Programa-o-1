@@ -18,7 +18,7 @@ int main(void)
             result= fscanf(arq,"%s",valor);
             if (result)  // Se foi possível ler
                 printf("%s",valor);
-                if(!feof(arq))
+                
                     printf("\n");
        }
     fclose(arq);

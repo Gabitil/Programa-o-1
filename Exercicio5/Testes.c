@@ -1,20 +1,19 @@
 #include <stdio.h>
-
-double fatorial (int n){
-    if (n==0)
-        return 1;
-    else
-        return (fatorial(n-1)*n);
-}
-
-
-
-int main()
+#include <string.h>//necessário para strtok;
+int main (void)
 {
-    int num;
-    
-    scanf("%d", &num);
-
-    printf("fatorial de %d e %f",num ,fatorial(num));
-    return 0;
+  
+  char texto1[50]="Fulano de Tal,Rua X.123,Centro,Cidade Y";
+  char *t;
+  
+  t = strtok(texto1," ");
+  
+  while(texto1 != NULL)
+  {
+    printf("%s\n",t);
+ 
+  }
+        
+  system("pause");  //pausa na tela, somente para Windows
+  return(0);
 }

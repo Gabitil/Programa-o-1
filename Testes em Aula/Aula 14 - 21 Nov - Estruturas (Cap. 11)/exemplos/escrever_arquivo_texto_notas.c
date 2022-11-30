@@ -15,8 +15,8 @@ int main(int argc, char *argv[] ) {
          printf("%d, ",notas[j]);
     }
 
-    char url[]="notas.txt"; //define nome do arquivo
-    arq = fopen(url, "w"); //abrir o arq, a partir da memoria e avisar que vai ser escrito
+    char url[]="notas.bin"; //define nome do arquivo
+    arq = fopen(url, "wb"); //abrir o arq, a partir da memoria e avisar que vai ser escrito
     if(arq == NULL){// tester se arquivo criado
         printf("Erro, nao foi possivel abrir o arquivo\n");
 	    exit(1);

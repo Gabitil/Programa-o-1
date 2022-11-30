@@ -5,19 +5,18 @@ ser chamar notas.bin.*/
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 10
+#define Q 20 
 
 FILE *arq;
 
 int main(int argc, char const *argv[])
 {
-
-    char *nome[N];
-    int notas[N];
-    int j=0,k=0, mn=1;
-
     char url[]="notas.bin";
+    char *dmain[Q];
     arq = fopen(url,"wb");
+
+    unsigned short tamstr[Q];
+
     if(arq == NULL)
     {
         printf("Erro, nao foi possivel abrir o arquivo\n");
@@ -27,27 +26,18 @@ int main(int argc, char const *argv[])
 
     for (int i = 1; i< argc; i++ )
     {
+        dmain[i-1]=argv[i];
+        printf("%s\n", dmain[i-1]);
 
-        if (i%2!=0)
-        {          
-            nome[j]=argv[i];
-            j++;
-            
-        }
-        else
-        {
-            notas[k]=atoi(argv[i]);
-            k++;
-        }
-  
+        tamstr[i-1]=strlen(dmain[i-1])+1;
+        fwrite(&tamstr[i-1], sizeof(unsigned short), Q, arq);
     }
 
-    for (int i = 0; i < j ; i++)
+    for (int i = 0; i < Q; i++)
     {
-
-        fprintf(arq, "%s\n", nome[i]);
-        fprintf(arq,"%d\n", notas[i]);
+        fwrite(dmain, tamstr, Q, arq);
     }
     
+
     fclose(arq);
 }

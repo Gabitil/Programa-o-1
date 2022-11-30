@@ -5,25 +5,38 @@ ser chamar notas.bin.*/
 
 #include <stdio.h>
 #include <stdlib.h>
+#define Q 20
 #define N 10
 
 int main (){
     char url[]="notas.bin";
-    int nota;
-    int  result;
+    char *nomes[N];
+    int  cont, nota[N], recebe[Q];
+
+    unsigned short tamstr[Q];
     FILE *arq;
-    char nome[50];
+
     arq = fopen(url, "rb");
     if(arq == NULL)
+    {
         printf("Erro, nao foi possivel abrir o arquivo\n");
-    else
-        while (!feof(arq))
-        {
-            result= fscanf(arq,"%s %d",nome, &nota);
-            if (result && !feof(arq))
-                printf("%s - %d",nome,nota);
-                if(!feof(arq))
-                    printf("\n");
-       }
+        exit(1);
+    }
+
+    for (int i = 0; i < Q; i++)
+    {
+        fread(tamstr, sizeof(unsigned short), 1, arq);
+        recebe[i]= malloc(sizeof(char) * tamstr[i]);
+        cont = fread(recebe, tamstr, Q, arq);
+
+        printf ("%d N: %d \n", i+1, recebe[i]);
+        
+    }
+
+    //cont = fread(recebe, sizeof(char), Q, arq);
+
+    if (cont !=Q)
+    fprintf (stderr, "Foram lidos apenas %d Elementos!!!\n" , cont);
+
     fclose(arq);
 }

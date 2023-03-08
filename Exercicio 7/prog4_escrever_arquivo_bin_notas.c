@@ -4,40 +4,36 @@ prog4_escrever_arquivo_bin_notas.c e prog5_ler_arquivo_bin_notas.c. O arquivo em
 ser chamar notas.bin.*/
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #define Q 20 
+
 
 FILE *arq;
 
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[])//recebe nome e nota, nessa ordem, dos argumentos da main e escreve no arquivo binario notas.bin
 {
     char url[]="notas.bin";
-    char *dmain[Q];
-    arq = fopen(url,"wb");
-
+    char *nomes[Q];
+    int  nota[Q];
     unsigned short tamstr[Q];
-
+    int i=0;
+    arq = fopen(url, "wb");
     if(arq == NULL)
     {
         printf("Erro, nao foi possivel abrir o arquivo\n");
         exit(1);
     }
-
-
-    for (int i = 1; i< argc; i++ )
+    while (i<Q)
     {
-        dmain[i-1]=argv[i];
-        printf("%s\n", dmain[i-1]);
-
-        tamstr[i-1]=strlen(dmain[i-1])+1;
-        fwrite(&tamstr[i-1], sizeof(unsigned short), Q, arq);
+        nomes[i] = (char *) malloc(strlen(argv[i+1])*sizeof(char));
+        strcpy(nomes[i],argv[i+1]);
+        nota[i] = atoi(argv[i+2]);
+        tamstr[i] = strlen(nomes[i]);
+        fwrite(&tamstr[i],sizeof(unsigned short),1,arq);
+        fwrite(nomes[i],sizeof(char),tamstr[i],arq);
+        fwrite(&nota[i],sizeof(int),1,arq);
+        i++;
     }
-
-    for (int i = 0; i < Q; i++)
-    {
-        fwrite(dmain, tamstr, Q, arq);
-    }
-    
-
     fclose(arq);
+    return 0;
 }

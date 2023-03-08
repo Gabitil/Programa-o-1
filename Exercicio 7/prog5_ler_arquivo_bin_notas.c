@@ -8,35 +8,28 @@ ser chamar notas.bin.*/
 #define Q 20
 #define N 10
 
-int main (){
-    char url[]="notas.bin";
-    char *nomes[N];
-    int  cont, nota[N], recebe[Q];
-
-    unsigned short tamstr[Q];
+int main (){ //le o arquivo binario notas.bin e imprime na tela
     FILE *arq;
-
+    char url[]="notas.bin";
+    char *nomes[Q];
+    int  nota[Q];
+    unsigned short tamstr[Q];
+    int i=0;
     arq = fopen(url, "rb");
     if(arq == NULL)
     {
         printf("Erro, nao foi possivel abrir o arquivo\n");
         exit(1);
     }
-
-    for (int i = 0; i < Q; i++)
+    while (i<Q)
     {
-        fread(tamstr, sizeof(unsigned short), 1, arq);
-        recebe[i]= malloc(sizeof(char) * tamstr[i]);
-        cont = fread(recebe, tamstr, Q, arq);
-
-        printf ("%d N: %d \n", i+1, recebe[i]);
-        
+        fread(&tamstr[i],sizeof(unsigned short),1,arq);
+        nomes[i] = (char *) malloc(tamstr[i]*sizeof(char));
+        fread(nomes[i],sizeof(char),tamstr[i],arq);
+        fread(&nota[i],sizeof(int),1,arq);
+        printf("%s %d\n",nomes[i],nota[i]);
+        i++;
     }
-
-    //cont = fread(recebe, sizeof(char), Q, arq);
-
-    if (cont !=Q)
-    fprintf (stderr, "Foram lidos apenas %d Elementos!!!\n" , cont);
-
     fclose(arq);
+    return 0;
 }

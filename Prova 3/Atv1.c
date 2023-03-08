@@ -7,40 +7,26 @@ da função. Na tela de execução, devem se apresentados a string informada e o
 das telas de compilação e de execução, todos reunidos em um único PDF por questão.*/
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-#define Q 50
-
-
-int verifica_pal(char *recebe)
-{
-
-    int tamanhostr= strlen(recebe);
-
-    char inverso[tamanhostr];
-
-    for (int i = 0; i < tamanhostr; i++)
-    {
-        inverso[i]=recebe[tamanhostr-i-1];
+int palindromo(char *str){
+    int i, j;
+    for(i=0, j=strlen(str)-1; i<j; i++, j--){
+        if(str[i] != str[j]){
+            return 0;
+        }
     }
-    
-
-    return strcmp (inverso, recebe);
-
-    
-
+    return 1;
 }
-int main()
-{
-    char letras[Q];
 
-    printf("Digite uma frase\n");
-    gets(letras);
-
-
-    if (verifica_pal(&letras) != 0)
-        printf("As letras %s nao sao palindromo", letras);    
-    else
-        printf("As letras %s sao palindromo", letras);
+int main(){
+    char str[100];
+    printf("Digite a string: ");
+    gets(str);
+    if(palindromo(str)){
+        printf("A string eh palindromo");
+    }else{
+        printf("A string nao eh palindromo");
+    }
+    return 0;
 }
